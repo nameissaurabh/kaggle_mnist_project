@@ -1,11 +1,16 @@
 # Kaggle MNIST Project 🧠
 
-A simple modular deep learning project to run on Kaggle GPU.
+A modular PyTorch project for training a simple neural network on MNIST, including test-set accuracy evaluation.
 
-## Steps to Run on Kaggle
+## Run on Kaggle
+
+In a Kaggle notebook, run:
 
 ```bash
-!git clone https://github.com/<your-username>/kaggle_mnist_project.git
+!git clone https://github.com/nameissaurabh/kaggle_mnist_project.git
 %cd kaggle_mnist_project
 !pip install -r requirements.txt
 !python train.py
+```
+
+The script downloads the MNIST dataset, trains for the configured number of epochs, reports test accuracy, and saves the trained weights to `mnist_model.pt`.
