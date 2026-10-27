@@ -33,5 +33,20 @@ for epoch in range(1, cfg.num_epochs + 1):
     avg_loss = running_loss / len(train_loader)
     print(f"Epoch {epoch} - Loss: {avg_loss:.4f}")
 
+model.eval()
+correct = 0
+total = 0
+
+with torch.no_grad():
+    for images, labels in tqdm(test_loader, desc="Evaluating"):
+        images, labels = images.to(device), labels.to(device)
+        outputs = model(images)
+        predictions = outputs.argmax(dim=1)
+        correct += (predictions == labels).sum().item()
+        total += labels.size(0)
+
+test_accuracy = 100.0 * correct / total
+print(f"\n📊 Test accuracy: {test_accuracy:.2f}%")
+
 torch.save(model.state_dict(), "mnist_model.pt")
 print("\n✅ Training complete! Model saved as mnist_model.pt")
